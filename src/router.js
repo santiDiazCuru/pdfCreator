@@ -10,6 +10,14 @@ router.get("/ping", (req, res) => {
 //USAR pdfkit
 router.get("/generatepdf", createPdfAndSendFile)
 router.get("/generatelocal", createLocalPDF)
+router.get("/flipbook", (req,res)=>{
+
+    if (!req.query.pdfurl) {
+        return res.sendStatus(400)
+    }
+
+    res.render("index.ejs", {pdfSrc: req.query.pdfurl})
+})
 router.post("/flipbook", (req,res)=>{
 
     if (!req.body.pdfUrl) {
